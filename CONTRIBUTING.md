@@ -15,15 +15,20 @@ that aligns with our community values and governance structure.
      familiarize yourself with how we operate.
 
 2. **Find an Area to Contribute**
-   - Contributions come in many forms: documentation, bug fixes, new features, or participating in discussions.
-   - Look for open issues on our GitHub repository that are tagged as [good first issue](../../issues?q=is%3Aissue+is%3Aopen+label%3Agood+first+issue) for beginners, or explore areas where you feel you can provide value.
+   - Contributions come in many forms: documentation, bug fixes, new features,
+     or participating in discussions.
+   - Look for open issues on our GitHub repository that are tagged as [good
+     first issue](../../issues?q=is%3Aissue+is%3Aopen+label%3Agood+first+issue)
+     for beginners, or explore areas where you feel you can provide value.
 
 3. **Join the Discussion**
    - Engaging with the community is crucial to contributing. You can:
      - Participate in discussions on [open issues](../../issues).
      - Broader discussions often happen on the [mailing
        list](https://groups.google.com/g/twelve-factor)
-   - Respectful dialogue and collaboration are key to our community's success.
+     - Near real-time collaboration happens on
+       [discord](https://discord.gg/9HFMDMt95z)
+   - Respectful dialogue and collaboration a key to our community's success.
 
 ## How to Contribute
 
