@@ -27,6 +27,20 @@ Information on participating is in [CONTRIBUTING.md](CONTRIBUTING.md)
   to follow it.
 - **Questions?** If you have any questions or need help, feel free to join the
   discussion on GitHub or reach out to a [maintainer](MAINTAINERS.md).
+- **Prior Art**:
+  - [https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/](https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/)  
+  - Nginx amendments (deleted from their site, but present in [https://slidrio-decks.global.ssl.fastly.net/1020/original.pdf](https://slidrio-decks.global.ssl.fastly.net/1020/original.pdf))
+
+## Update Frequently Asked Questions
+
+- [What is this?](UPDATE_FAQ.md#what-is-this)
+- [Why now?](UPDATE_FAQ.md#why-now)
+- [Why isn't \[my favorite software development principle\] a factor?](UPDATE_FAQ.md#why-isnt-my-favorite-software-development-principle-a-factor)
+- [Who’s helping and why?](UPDATE_FAQ.md#whos-helping-and-why)
+- [Will there always be twelve factors?](UPDATE_FAQ.md#will-there-always-be-twelve-factors)
+- [What’s not changing?](UPDATE_FAQ.md#whats-not-changing)
+- [What is changing?](UPDATE_FAQ.md#what-is-changing)
+- [Are you just updating the examples?](UPDATE_FAQ.md#are-you-just-updating-the-examples)
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
