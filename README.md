@@ -1,5 +1,5 @@
 [![CC BY 4.0][cc-by-shield]][cc-by]
-[![Discord](https://img.shields.io/discord/1296917489615110174)](https://discord.gg/9HFMDMt95z)
+[![Discord](https://img.shields.io/discord/1296917489615110174?label=discord&logo=discord&logoColor=#5865F2)](https://discord.gg/9HFMDMt95z)
 [![Google
 Group](https://img.shields.io/badge/mailing_list-blue)](https://groups.google.com/g/twelve-factor)
 
