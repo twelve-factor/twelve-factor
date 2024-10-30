@@ -14,7 +14,7 @@
 | Joe Kutner      | [@jkutner](@https://github.com/jkutner)             |                  |
 | Terence Lee     | [@hone](https://github.com/hone)                    |                  |
 | James Ward      | [@jamesward](@https://github.com/jamesward)         |                  |
-| Brett Weaver    | [@weavenet](@https://github.com/weavenet)           |                  |
+| Brett Weaver    | [@weavenet](https://github.com/weavenet)            |                  |
 
 ## Emeritus Maintainers
 
