@@ -39,16 +39,16 @@ technologies like Kubernetes are widespread. Best-practices for software have
 evolved, and we believe that Twelve-Factor also needs to evolve.
 
 But we also believe that the core ideas in twelve-factor are timeless and are
-more relevant than ever. “The 12-Factor App” started a revolution based on this
-idea: if there is a clean interface contract between applications and
+more relevant than ever. “The Twelve-Factor App” started a revolution based on
+this idea: if there is a clean interface contract between applications and
 platforms, application developers can build portable, scalable applications
 across multiple compute runtimes and environments (local, testing, staging,
 production).
 
-This was decidedly *not* the state of affairs in 2012, when “The 12-Factor App”
-was first written. By outlining a contract between applications and platforms,
-that began to change. Over the years, much of the contract defined by
-twelve-factor has become conventional wisdom. At the same time, applications
+This was decidedly *not* the state of affairs in 2011, when “The Twelve-Factor
+App” was first written. By outlining a contract between applications and
+platforms, that began to change. Over the years, much of the contract defined
+by twelve-factor has become conventional wisdom. At the same time, applications
 have become more sophisticated, and the ecosystem’s best practices have drifted
 away from the details outlined in the original manifesto.
 
