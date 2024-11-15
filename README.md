@@ -33,6 +33,9 @@ Information on participating is in [CONTRIBUTING.md](CONTRIBUTING.md)
 - **Prior Art**:
   - [https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/](https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/)  
   - Nginx amendments (deleted from their site, but present in [https://slidrio-decks.global.ssl.fastly.net/1020/original.pdf](https://slidrio-decks.global.ssl.fastly.net/1020/original.pdf))
+  - [https://www.cncf.io/blog/2022/04/28/twelve-factor-app-anno-2022/](https://www.cncf.io/blog/2022/04/28/twelve-factor-app-anno-2022/)
+  - [https://lab.abilian.com/Tech/Cloud/The%2012%20Factor%20App/](https://lab.abilian.com/Tech/Cloud/The%2012%20Factor%20App/)
+  - [https://www.ibm.com/blog/7-missing-factors-from-12-factor-applications/](https://www.ibm.com/blog/7-missing-factors-from-12-factor-applications/)
 
 ## Update Frequently Asked Questions
 
