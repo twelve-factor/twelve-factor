@@ -7,7 +7,7 @@ The [process formation](./concurrency.md) is the array of processes that are use
 * Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `perl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
 * Running one-time scripts committed into the app's repo (e.g. `php scripts/fix_bad_records.php`).
 
-One-off admin processes should be run in an identical environment as the regular [long-running processes](./processes.md) of the app.  They run against a [release](./build-release-run), using the same [codebase](./codebase.md) and [config](./config.md) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
+One-off admin processes should be run in an identical environment as the regular [long-running processes](./processes.md) of the app.  They run against a [release](./build-release-run.md), using the same [codebase](./codebase.md) and [config](./config.md) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
 
 The same [dependency isolation](./dependencies.md) techniques should be used on all process types.  For example, if the Ruby web process uses the command `bundle exec thin start`, then a database migration should use `bundle exec rake db:migrate`.  Likewise, a Python program using Virtualenv should use the vendored `bin/python` for running both the Tornado webserver and any `manage.py` admin processes.
 

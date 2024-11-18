@@ -4,7 +4,7 @@ The Twelve Factors
 ## [I. Codebase](./codebase.md)
 ### One codebase tracked in revision control, many deploys
 
-## [II. Dependencies](./dependencie.mds)
+## [II. Dependencies](./dependencie.md)
 ### Explicitly declare and isolate dependencies
 
 ## [III. Config](./config.md)
