@@ -4,7 +4,7 @@ The Twelve Factors
 ## [I. Codebase](./codebase.md)
 ### One codebase tracked in revision control, many deploys
 
-## [II. Dependencies](./dependencie.md)
+## [II. Dependencies](./dependencies.md)
 ### Explicitly declare and isolate dependencies
 
 ## [III. Config](./config.md)
@@ -31,8 +31,8 @@ The Twelve Factors
 ## [X. Dev/prod parity](./dev-prod-parity.md)
 ### Keep development, staging, and production as similar as possible
 
-## [XI. Logs](./logs)
+## [XI. Logs](./logs.md)
 ### Treat logs as event streams
 
-## [XII. Admin processes](./admin-processes)
+## [XII. Admin processes](./admin-processes.md)
 ### Run admin/management tasks as one-off processes
