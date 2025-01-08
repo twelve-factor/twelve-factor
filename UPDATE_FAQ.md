@@ -59,7 +59,7 @@ application codebase.
 ## Why isn't \[my favorite software development principle\] a factor?
 
 When selecting factors, we hold closely to the principles laid out in our
-[vision](VISON.md). Twelve-factor isn't intended to be a collection of
+[vision](VISION.md). Twelve-factor isn't intended to be a collection of
 everything you need to think about when building an application. It
 specifically focuses on the interfaces between the application and the
 platform. This means that a number of software development principles (DRY,
