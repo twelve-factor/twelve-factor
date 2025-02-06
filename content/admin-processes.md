@@ -1,14 +1,43 @@
 ## XII. Admin processes
+
 ### Run admin/management tasks as one-off processes
 
-The [process formation](./concurrency.md) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
+#### 1. A twelve-factor app distinguishes between its regular business processes and one-off administrative tasks.
 
-* Running database migrations (e.g. `manage.py migrate` in Django, `rake db:migrate` in Rails).
-* Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `perl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
-* Running one-time scripts committed into the app's repo (e.g. `php scripts/fix_bad_records.php`).
+The [process formation](./concurrency.md) defines the array of processes used to
+run the app’s regular operations (such as handling web requests). Separately,
+developers often need to perform ad hoc administrative or maintenance tasks.
 
-One-off admin processes should be run in an identical environment as the regular [long-running processes](./processes.md) of the app.  They run against a [release](./build-release-run.md), using the same [codebase](./codebase.md) and [config](./config.md) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
+##### Examples
 
-The same [dependency isolation](./dependencies.md) techniques should be used on all process types.  For example, if the Ruby web process uses the command `bundle exec thin start`, then a database migration should use `bundle exec rake db:migrate`.  Likewise, a Python program using Virtualenv should use the vendored `bin/python` for running both the Tornado webserver and any `manage.py` admin processes.
+Administrative tasks include:
 
-Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.  In a local deploy, developers invoke one-off admin processes by a direct shell command inside the app's checkout directory.  In a production deploy, developers can use ssh or other remote command execution mechanism provided by that deploy's execution environment to run such a process.
+- Running database migrations (e.g. `manage.py migrate` in Django,
+  `rake db:migrate` in Rails).
+- Launching a REPL (Read-Eval-Print Loop) shell to execute arbitrary code or
+  inspect the app’s models against the live database.
+- Executing one-time scripts committed into the app’s repository (e.g.
+  `php scripts/fix_bad_records.php`).
+
+#### 2. A twelve-factor app runs admin processes in an environment identical to its long-running processes.
+
+Admin processes are executed against a [release](./build-release-run.md) using
+the same [codebase](./codebase.md) and [config](./config.md) as all other
+processes. This ensures consistency and prevents synchronization issues between
+administrative tasks and the running app.
+
+##### Examples
+
+The same [dependency isolation](./dependencies.md) techniques apply to every
+process type. For instance, if a Ruby web process is started with
+`bundle exec thin start`, then a database migration should be run with
+`bundle exec rake db:migrate`. Likewise, a Python application using Virtualenv
+should invoke the vendored `bin/python` for both the web server and any
+`manage.py` admin tasks.
+
+##### Guidance
+
+In local deployments, one-off admin processes are invoked directly via shell
+commands within the app’s checkout directory. In production, such tasks are
+executed using SSH or another remote command execution mechanism provided by the
+deployment environment.
