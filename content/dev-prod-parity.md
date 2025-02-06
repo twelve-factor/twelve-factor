@@ -1,76 +1,71 @@
 ## X. Dev/prod parity
+
 ### Keep development, staging, and production as similar as possible
 
-Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](./codebase.md) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
+#### 1. A twelve-factor app minimizes gaps between development, staging, and production environments.
 
-* **The time gap**: A developer may work on code that takes days, weeks, or even months to go into production.
-* **The personnel gap**: Developers write code, ops engineers deploy it.
-* **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+Historically, there have been substantial gaps between development (a developer
+making live edits to a local [deploy](./codebase.md) of the app) and production
+(a running deploy of the app accessed by end users). These gaps manifest in
+three areas: the time gap, the personnel gap, and the tools gap. The
+twelve-factor app is designed for
+[continuous deployment](http://avc.com/2011/02/continuous-deployment/) by
+keeping these gaps small.
 
-**The twelve-factor app is designed for [continuous deployment](http://avc.com/2011/02/continuous-deployment/) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+##### Examples
 
-* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Make the tools gap small: keep development and production as similar as possible.
+- **The time gap:** In traditional apps, a developer may work on code that takes
+  days, weeks, or even months to go into production.
+- **The personnel gap:** Developers write code while operations engineers deploy
+  it.
+- **The tools gap:** Developers might use one stack (e.g., Nginx, SQLite, OS X)
+  while production uses another (e.g., Apache, MySQL, Linux).
 
-Summarizing the above into a table:
+|                                    | Traditional app  | Twelve-factor app      |
+| ---------------------------------- | ---------------- | ---------------------- |
+| **Time between deploys**           | Weeks            | Hours                  |
+| **Code authors vs deployers**      | Different people | Same people            |
+| **Dev vs production environments** | Divergent        | As similar as possible |
 
-<table>
-  <tr>
-    <th></th>
-    <th>Traditional app</th>
-    <th>Twelve-factor app</th>
-  </tr>
-  <tr>
-    <th>Time between deploys</th>
-    <td>Weeks</td>
-    <td>Hours</td>
-  </tr>
-  <tr>
-    <th>Code authors vs code deployers</th>
-    <td>Different people</td>
-    <td>Same people</td>
-  </tr>
-  <tr>
-    <th>Dev vs production environments</th>
-    <td>Divergent</td>
-    <td>As similar as possible</td>
-  </tr>
-</table>
+##### Guidance
 
-[Backing services](./backing-services.md), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
+To achieve dev/prod parity:
 
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Language</th>
-    <th>Library</th>
-    <th>Adapters</th>
-  </tr>
-  <tr>
-    <td>Database</td>
-    <td>Ruby/Rails</td>
-    <td>ActiveRecord</td>
-    <td>MySQL, PostgreSQL, SQLite</td>
-  </tr>
-  <tr>
-    <td>Queue</td>
-    <td>Python/Django</td>
-    <td>Celery</td>
-    <td>RabbitMQ, Beanstalkd, Redis</td>
-  </tr>
-  <tr>
-    <td>Cache</td>
-    <td>Ruby/Rails</td>
-    <td>ActiveSupport::Cache</td>
-    <td>Memory, filesystem, Memcached</td>
-  </tr>
-</table>
+- **Minimize the time gap:** Aim for deployments within hours or even minutes.
+- **Reduce the personnel gap:** Involve the same people in writing and deploying
+  code.
+- **Narrow the tools gap:** Keep development and production environments as
+  similar as possible.
 
-Developers sometimes find great appeal in using a lightweight backing service in their local environments, while a more serious and robust backing service will be used in production.  For example, using SQLite locally and PostgreSQL in production; or local process memory for caching in development and Memcached in production.
+#### 2. A twelve-factor app enforces parity for backing services.
 
-**The twelve-factor developer resists the urge to use different backing services between development and production**, even when adapters theoretically abstract away any differences in backing services.  Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production.  These types of errors create friction that disincentivizes continuous deployment.  The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+Backing services—such as databases, queueing systems, or caches—are a critical
+area where parity between development and production is essential. Many
+languages offer libraries that simplify access to these services, including
+adapters that abstract differences between various implementations.
 
-Lightweight local services are less compelling than they once were.  Modern backing services such as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run thanks to modern packaging systems, such as [Homebrew](http://mxcl.github.com/homebrew/) and [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatively, declarative provisioning tools such as [Chef](http://www.opscode.com/chef/) and [Puppet](http://docs.puppetlabs.com/) combined with light-weight virtual environments such as [Docker](https://www.docker.com/) and [Vagrant](http://vagrantup.com/) allow developers to run local environments which closely approximate production environments. The cost of installing and using these systems is low compared to the benefit of dev/prod parity and continuous deployment.
+##### Examples
 
-Adapters to different backing services are still useful, because they make porting to new backing services relatively painless.  But all deploys of the app (developer environments, staging, production) should be using the same type and version of each of the backing services.
+| Type     | Language      | Library              | Adapters                      |
+| -------- | ------------- | -------------------- | ----------------------------- |
+| Database | Ruby/Rails    | ActiveRecord         | MySQL, PostgreSQL, SQLite     |
+| Queue    | Python/Django | Celery               | RabbitMQ, Beanstalkd, Redis   |
+| Cache    | Ruby/Rails    | ActiveSupport::Cache | Memory, filesystem, Memcached |
+
+Developers sometimes favor lightweight backing services locally—using SQLite
+instead of PostgreSQL, or in-memory caching instead of Memcached—while
+production employs more robust alternatives.
+
+##### Guidance
+
+The twelve-factor developer resists using different backing services between
+development and production. Even when adapters abstract away differences, slight
+incompatibilities can cause code that passes tests locally to fail in
+production, adding friction that dampens continuous deployment. To ensure
+smooth, reliable deployments, all environments (development, staging,
+production) should use the same type and version of each backing service. Modern
+packaging systems like [Homebrew](http://mxcl.github.com/homebrew/) and
+[apt-get](https://help.ubuntu.com/community/AptGet/Howto), as well as
+provisioning tools such as [Chef](http://www.opscode.com/chef/),
+[Puppet](http://docs.puppetlabs.com/), Docker, and Vagrant, make it practical to
+closely align local setups with production.
