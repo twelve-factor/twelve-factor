@@ -6,7 +6,6 @@
 | --------------- | -------------------------------------------------- | ----------------- |
 | Vish Abrams     | [@vishvananda](https://github.com/vishvananda)     | vishvananda       |
 | Evan Anderson   | [@evankanderson](https://github.com/evankanderson) | evan_92162        |
-| Gail Frederick  | [@gailfrederick](https://github.com/gailfrederick) | screaminggeek     |
 | Brian Hammons   | [@brianhammons](https://github.com/brianhammons)   | brianhammons.     |
 | Grace Jansen    | [@GraceJansen](https://github.com/GraceJansen)     | gracejansen_70738 |
 | Yehuda Katz     | [@wycats](https://github.com/wycats)               | wycats            |
@@ -19,4 +18,5 @@
 
 | Name            | GitHub Username                                    |
 | --------------- | -------------------------------------------------- |
+| Gail Frederick  | [@gailfrederick](https://github.com/gailfrederick) |
 | Steren Giannini | [@steren](https://github.com/steren)               |
