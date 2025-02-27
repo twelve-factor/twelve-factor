@@ -42,18 +42,14 @@ such as [Jammit](http://documentcloud.github.io/jammit/) and the [Rails asset
 pipeline](http://ryanbigg.com/guides/asset_pipeline.html) can be configured to
 package assets during the build stage.
 
-#### 3. A twelve-factor app does not rely on “sticky sessions.”
+##### Guidance
 
 Some web systems rely on ["sticky
 sessions"](http://en.wikipedia.org/wiki/Load_balancing_%28computing%29#Persistence)
 — that is, caching user session data in memory of the app’s process and
 expecting future requests from the same visitor to be routed to the same
 process. Sticky sessions are a violation of twelve-factor and should never be
-used or relied upon.
-
-##### Guidance
-
-Session state data is a good candidate for a datastore that offers
+used or relied upon. Session state data is a good candidate for a datastore that offers
 time-expiration, such as [Memcached](http://memcached.org/) or
 [Redis](http://redis.io/).
 
