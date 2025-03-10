@@ -34,5 +34,5 @@ The Twelve Factors
 ## [XI. Logs](./logs.md)
 ### Treat logs as event streams
 
-## [XII. Admin processes](./admin-processes.md)
-### Run admin/management tasks as one-off processes
+## [XII. Identity](./identity.md)
+### Use a short-lived workload identity to connect to backing services
