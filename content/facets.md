@@ -3,7 +3,7 @@
 While the 12 factors serve as helpful specific guidelines for development teams, the rationale behind the factors is to enable a set of application-platform interactions which simplify the operation of applications which follow the recommendations in the factors.  These interactions can be broadly grouped by the platform behaviors they enable, which serve as “facets” of operation where the 12 factors simplify maintenance.  The facets enable applications which are:
 
 * **Continuously Deployable**: it is easy to deploy new software versions in existing environments
-* **Composable**: it is easy to set up existing software versions in new environments
+* **Configurable**: it is easy to set up existing software versions in new environments
 * **Scalable**: it is easy to manage the software within an environment
 * **Observable**: it is easy to debug the software when running in an production environment
 
@@ -45,7 +45,7 @@ Explicitly defining the build process and separating it from running the applica
 
 Maintaining common software configuration between development, staging and production enables CI/CD processes to automate the deployment and upgrades between environments where applicable.
 
-# Composable
+# Configurable
 
 ## What
 
