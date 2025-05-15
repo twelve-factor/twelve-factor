@@ -7,6 +7,8 @@ While the 12 factors serve as helpful specific guidelines for development teams,
 * **Scalable**: it is easy to manage the software within an environment
 * **Observable**: it is easy to debug the software when running in an production environment
 
+Because applications which follow the "scalable" facet will naturally tend towards stateless _application_ code, the overall distributed system can choose consistency or availability based on the capabilities of the state-managing backend services.  This does not remove architectural responsibility from the application to use transactions and other data integrity tools where necessary.
+
 The following sections will map how specific factors contribute to the different facets of application operations.  Applications which apply the contributing factors for a particular facet may be able to derive some benefits from the 12 factors even if they cannot satisfy all of the factors.
 
 # Continuously Deployable
@@ -37,9 +39,9 @@ Explicit configuration in the environment enables deployment without needing to 
 
 Explicitly defining the build process and separating it from running the application helps in defining and automating the delivery process for CD.
 
-### 9. Disposability?
+### 9. Disposability
 
-(possible) Disposability means that it is easy to shut down and start up new instances during a rollout without needing manual application orchestration.
+Disposability means that it is easy to shut down and start up new instances during a rollout without needing manual application orchestration.
 
 ### 10. Dev/Prod Parity
 
@@ -119,7 +121,7 @@ While local development instances may be easy to debug and interact with by paus
 
 ### 4. Backing Services?
 
-(possible) treating all connected services as network-connected, measurement of basic system interactions (tracing, latency metrics, errors) can be measured more easily and uniformly at the application level.
+By treating all connected services as network-connected, measurement of basic system interactions (tracing, latency metrics, errors) can be measured more easily and uniformly at the application level.  For example, a backing database service can provide metrics for transaction latency and throughput automatically without application support.
 
 ### 6. Processes
 
