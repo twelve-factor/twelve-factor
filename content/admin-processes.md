@@ -4,7 +4,7 @@
 
 #### 1. A twelve-factor app distinguishes between its regular business processes and one-off administrative tasks.
 
-The [process formation](./concurrency.md) defines the array of processes used to
+The [process formation](./processes.md) defines the array of processes used to
 run the app’s regular operations (such as handling web requests). Separately,
 developers often need to perform ad hoc administrative or maintenance tasks.
 
