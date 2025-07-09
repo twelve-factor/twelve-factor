@@ -35,7 +35,8 @@ exiting in a controlled manner, thereby avoiding abrupt terminations.
 For a web process, graceful shutdown is achieved by ceasing to listen on the
 service port—refusing new requests while allowing current ones to finish. For a
 worker process, it means returning the current job to the work queue (for
-example, by sending a `NACK` on [RabbitMQ](http://www.rabbitmq.com/), relying on
+example, by sending a [`NACK`](https://www.rabbitmq.com/docs/nack) on
+[RabbitMQ](http://www.rabbitmq.com/), relying on
 automatic job return on [Beanstalkd](https://beanstalkd.github.io/), or
 releasing a lock in systems like
 [Delayed Job](https://github.com/collectiveidea/delayed_job#readme)).
