@@ -1,12 +1,12 @@
 ## IX. Disposability
 
-### Maximize robustness with graceful startup and graceful shutdown
+### Maximize robustness with graceful startup and shutdown
 
 #### 1. A twelve-factor app’s processes are disposable.
 
 Processes are designed to be started or stopped at a moment’s notice. This
-disposability underpins fast elastic scaling, rapid deployment of code or config
-changes, and overall production robustness.
+disposability underpins sustainable elastic scaling, rapid deployment of 
+code or config changes, and overall production robustness.
 
 ##### Examples
 
@@ -16,8 +16,8 @@ releases by simply replacing processes without lengthy downtime.
 #### 2. A twelve-factor app’s processes minimize startup time.
 
 Processes should start in just a few seconds from the moment the launch command
-is executed until they are ready to receive requests or jobs. A fast startup is
-key to agile releases and dynamic scaling.
+is executed until they are ready to receive requests or jobs. A graceful startup 
+is key to agile releases and dynamic scaling.
 
 ##### Guidance
 
