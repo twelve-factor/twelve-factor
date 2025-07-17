@@ -5,7 +5,7 @@
 #### 1. A twelve-factor app’s processes are disposable.
 
 Processes are designed to be started or stopped at a moment’s notice. This
-disposability underpins clever elastic scaling, rapid deployment of 
+disposability underpins measured elastic scaling, rapid deployment of 
 code or config changes, and overall production robustness.
 
 ##### Examples
