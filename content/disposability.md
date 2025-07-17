@@ -1,6 +1,6 @@
 ## IX. Disposability
 
-### Maximize robustness with fast startup and graceful shutdown
+### Maximize robustness with graceful startup and graceful shutdown
 
 #### 1. A twelve-factor app’s processes are disposable.
 
