@@ -2,50 +2,75 @@
 
 ### Use a workload identity to connect to backing services
 
-#### 1. A workload identity is connection scoped and is represented by short-lived credentials.
+#### 1. Workload identity credentials used for a connection are narrowly scoped and short-lived.
 
-A twelve-factor app is provided with an identity that is specific to each
-connected [backing service](./backing-services.md). The credentials for this
-identity are delivered via a well-known mechanism (e.g., a file or known network
-location) and are short-lived to minimize the risk of compromise.
+A twelve-factor app connects to a [backing service](./backing-services.md) using
+credentials that are restricted to the minimal necessary scope for that
+connection and are short-lived to reduce the risk of misuse.
 
 ##### Examples
 
-- An app retrieves its connection-specific credentials from a file like
-  `/var/run/identity/token` referenced by an environment variable (e.g.,
-  `BACKEND_CREDS`).
+- The platform issues a short-lived OIDC JWT or [SPIFFE](https://spiffe.io/)
+  JWT-SVID already tied to the intended backing service.
+- A [WIMSE](https://datatracker.ietf.org/doc/draft-ietf-wimse-s2s-protocol/)
+  Workload Identity Token is issued for the service, and the service binds it to
+  the connection via proof-of-possession.
+- An mTLS certificate is issued and bound to the client to communicate with the
+  backing service.
 
 ##### Guidance
 
-- Ensure that the credentials are short-lived to reduce exposure in case of
-  compromise.
-- Don not store credentials directly in [config](./config.md) but rather provide
-  a reference to where they can be securely retrieved.
-- Avoid static credentials; rely on dynamic credentials for connection-specific
-  identities injected or retrieved at runtime.
+- Ensure the credentials used for each connection are as narrow in scope as
+  possible for the use case.
+- Use short-lived, automatically-rotated credentials to minimize exposure.
+- Provide credentials via a secure, well-known mechanism (file path, metadata
+  endpoint, or socket) rather than embedding them in [config](./config.md).
 
 #### 2. The platform provides the identity and validation information for backing services.
 
-The execution platform is responsible for delivering both the workload identity
-credentials and the accompanying validation metadata (such as issuer details or
-public keys) into the runtime environment. This mechanism ensures that the app
-can seamlessly authenticate to backing services without manual configuration of
-static secrets.
+The execution platform delivers both the workload identity credentials and the
+information needed for the backing service to validate them. This ensures the
+app can authenticate without manual configuration of static secrets.
+
+##### Examples
+
+- A platform injects an OIDC token along with a JWKS URL for signature
+  validation.
+- A SPIFFE implementation delivers both an SVID and its trust bundle.
+- A WIMSE implementation provides both a WIT and the public key metadata
+  required for validation.
 
 ##### Guidance
 
-- Leverage the platform’s built-in mechanisms to securely inject both the
-  identity credentials and its validation details.
+- Use the platform’s built-in mechanisms to inject credentials and trust
+  material.
+- Keep trust anchors and validation configuration out of the app’s source and
+  config files.
+- Ensure the injection approach is consistent across local, CI, and production
+  environments.
 
-#### 3. Backing services validate the workload identity upon connection.
+#### 3. Backing services validate the workload identity credentials upon connection.
 
-Backing services must verify the provided identity token when an app attempts to
-connect. This validation confirms that the token is authentic, unexpired, and
-properly scoped, ensuring that the connection is secure and authorized.
+When an app connects, the backing service verifies that the supplied credentials
+are authentic, unexpired, and correctly scoped for the request.
+
+##### Examples
+
+- A service validates an OIDC JWT by checking issuer, subject, and audience
+  claims against expected values.
+- A SPIFFE-enabled service validates a JWT-SVID against its trust bundle.
+- A WIMSE-enabled service verifies a WIT and its proof-of-possession signature.
+- An mTLS-secured service authenticates the client certificate’s SubjectAltName
+  and trust domain.
 
 ##### Guidance
 
-The backing service should be configured with the validation information
-specified by the platform. With OIDC this means configuring the expected issuer,
-subject and audience values. Then the token can be validated dynamically using
-JWKS URL
+- Configure the backing service with the validation parameters supplied by the
+  platform (issuer patterns, audience values, trust domains, or public key
+  sources).
+- For bearer-token schemes, validate on every request using current key
+  material.
+- For proof-of-possession or mTLS, enforce binding between the key material and
+  the session.
+- Where possible, delegate validation to platform-provided proxies or libraries
+  to reduce application-layer complexity.
