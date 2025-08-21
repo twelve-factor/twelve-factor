@@ -2,16 +2,18 @@
 
 ### Use a workload identity to connect to backing services
 
-#### 1. Workload identity credentials used for a connection are narrowly scoped and short-lived.
+#### 1. Workload identity credentials are narrowly scoped and short-lived.
 
 A twelve-factor app connects to a [backing service](./backing-services.md) using
-credentials that are restricted to the minimal necessary scope for that
-connection and are short-lived to reduce the risk of misuse.
+credentials that are restricted to the minimal necessary scope for each
+connection or request and are short-lived to reduce the risk of misuse.
 
 ##### Examples
 
 - The platform issues a short-lived OIDC JWT or [SPIFFE](https://spiffe.io/)
   JWT-SVID already tied to the intended backing service.
+- The platform issues a transaction token that is valid only for a specific
+  operation.
 - A [WIMSE](https://datatracker.ietf.org/doc/draft-ietf-wimse-s2s-protocol/)
   Workload Identity Token is issued for the service, and the service binds it to
   the connection via proof-of-possession.
@@ -49,10 +51,10 @@ app can authenticate without manual configuration of static secrets.
 - Ensure the injection approach is consistent across local, CI, and production
   environments.
 
-#### 3. Backing services validate the workload identity credentials upon connection.
+#### 3. Backing services validate workload identity credentials.
 
-When an app connects, the backing service verifies that the supplied credentials
-are authentic, unexpired, and correctly scoped for the request.
+When an app connects or makes a request, the backing service verifies that the
+supplied credentials are authentic, unexpired, and correctly scoped.
 
 ##### Examples
 
