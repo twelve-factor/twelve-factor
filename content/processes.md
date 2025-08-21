@@ -38,7 +38,7 @@ all local (e.g., memory and filesystem) state.
 Asset packagers like
 [django-assetpackager](http://code.google.com/p/django-assetpackager/) use the
 filesystem as a cache for compiled assets. A twelve-factor app prefers to do
-this compiling during the [build stage](/build-release-run). Asset packagers
+this compiling during the [build stage](./build-release-run.md). Asset packagers
 such as [Jammit](http://documentcloud.github.io/jammit/) and the
 [Rails asset pipeline](http://ryanbigg.com/guides/asset_pipeline.html) can be
 configured to package assets during the build stage.
