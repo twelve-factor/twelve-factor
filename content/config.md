@@ -63,7 +63,7 @@ into more deploys over its lifetime.
 #### 4. A twelve-factor app uses environment variables to locate dynamic credentials
 
 While configuration should ideally remain static for the lifetime of a process
-instance (tied to a [release](./release-stage.md)), a critical exception exists
+instance (tied to a [release](./build-release-run.md)), a critical exception exists
 for short-lived credentials required to securely connect to
 [backing services](./backing-services.md). These credentials _must_ rotate
 during the process lifetime for security.
