@@ -1,0 +1,33 @@
+{
+  "name": "twelve-factor",
+  "version": "1.0.0",
+  "description": "Expert guidance for building twelve-factor applications",
+  "created": "2025-11-19",
+  "lastUpdated": "2025-11-19",
+  "documentation": {
+    "source": "https://12factor.net",
+    "repository": "https://github.com/twelve-factor/twelve-factor",
+    "lastChecked": "2025-11-19",
+    "version": "2024-update"
+  },
+  "capabilities": [
+    "code-review",
+    "architecture-guidance",
+    "compliance-checking",
+    "configuration-audit",
+    "deployment-validation"
+  ],
+  "agents": [
+    "compliance-checker",
+    "config-auditor",
+    "deployment-validator"
+  ],
+  "scripts": [
+    "check-compliance.sh",
+    "update-docs.sh",
+    "analyze-config.py"
+  ],
+  "hooks": [
+    "skill-load"
+  ]
+}

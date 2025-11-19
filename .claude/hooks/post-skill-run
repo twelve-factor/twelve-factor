@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Twelve-Factor Skill - Post-skill-run Hook
+# Runs after skill execution to update docs and emit metrics
+# Performance: non-blocking, runs in background
+
+set -euo pipefail
+
+SKILL_DIR="$(git rev-parse --show-toplevel 2>/dev/null || echo ".")/.claude/skills/twelve-factor"
+HOOKS_DIR="$SKILL_DIR/hooks/post-skill-run.d"
+
+log() {
+    echo "[$(date -u +"%H:%M:%S")] [post-skill-run] $*"
+}
+
+# Run all hooks in hooks.d directory (numbered for ordering)
+if [ -d "$HOOKS_DIR" ]; then
+    for hook in "$HOOKS_DIR"/*.sh; do
+        [ -x "$hook" ] || continue
+
+        hook_name=$(basename "$hook")
+        log "Running hook: $hook_name"
+
+        # Run with timeout, non-blocking (best-effort)
+        (
+            timeout 15s bash "$hook" "$@" 2>&1 | while IFS= read -r line; do
+                echo "  $line"
+            done
+        ) || log "⚠️  Hook $hook_name failed or timed out (continuing...)"
+    done
+else
+    log "No post-run hooks found at $HOOKS_DIR"
+fi
+
+log "✅ Post-skill-run hooks completed"
