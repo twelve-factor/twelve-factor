@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-19T00:00:00Z",
+  "bus_backend": "json",
+  "skills": [
+    {
+      "id": "twelve-factor-methodology",
+      "name": "Twelve-Factor Methodology",
+      "version": "1.0.0",
+      "archetype": "reference",
+      "path": ".claude/skills/twelve-factor-methodology",
+      "capabilities": ["analyze", "assess", "document"],
+      "agents": ["factor-check", "code-scan", "docs-sync"],
+      "topics": {
+        "publishes": ["skill.run", "agent.*.result", "docs.updated"],
+        "subscribes": []
+      },
+      "status": "active",
+      "docs": {
+        "official": [
+          {
+            "name": "Twelve-Factor.net",
+            "url": "https://12factor.net",
+            "last_checked": "2025-11-19"
+          },
+          {
+            "name": "GitHub Repository",
+            "url": "https://github.com/twelve-factor/twelve-factor",
+            "last_checked": "2025-11-19"
+          }
+        ]
+      }
+    },
+    {
+      "id": "twelve-factor-audit",
+      "name": "Twelve-Factor Audit",
+      "version": "1.0.0",
+      "archetype": "audit",
+      "path": ".claude/skills/twelve-factor-audit",
+      "capabilities": ["audit", "check", "report"],
+      "topics": {
+        "publishes": ["audit.start", "audit.complete", "audit.violations"],
+        "subscribes": ["agent.*.result"]
+      },
+      "status": "active"
+    },
+    {
+      "id": "twelve-factor-remediation",
+      "name": "Twelve-Factor Remediation",
+      "version": "1.0.0",
+      "archetype": "remediation",
+      "path": ".claude/skills/twelve-factor-remediation",
+      "capabilities": ["fix", "preview", "rollback"],
+      "topics": {
+        "publishes": ["remediation.start", "remediation.complete", "remediation.changes"],
+        "subscribes": ["audit.complete", "audit.violations"]
+      },
+      "status": "active"
+    },
+    {
+      "id": "twelve-factor-monitor",
+      "name": "Twelve-Factor Monitor",
+      "version": "1.0.0",
+      "archetype": "monitor",
+      "path": ".claude/skills/twelve-factor-monitor",
+      "capabilities": ["monitor", "alert", "history"],
+      "topics": {
+        "publishes": ["monitor.metrics", "monitor.alert", "monitor.trend"],
+        "subscribes": ["audit.complete"]
+      },
+      "status": "active"
+    },
+    {
+      "id": "skill-generator",
+      "name": "Skill Generator",
+      "version": "1.0.0",
+      "archetype": "meta",
+      "path": ".claude/skills/skill-generator",
+      "capabilities": ["generate", "scaffold"],
+      "topics": {
+        "publishes": ["skill.created"],
+        "subscribes": []
+      },
+      "status": "active"
+    }
+  ],
+  "coordination": {
+    "typical_workflows": [
+      {
+        "name": "Full Compliance Pipeline",
+        "sequence": [
+          "twelve-factor-audit → audit.complete",
+          "twelve-factor-remediation (reads audit.complete) → remediation.complete",
+          "twelve-factor-audit (verify fixes) → audit.complete"
+        ]
+      },
+      {
+        "name": "Continuous Monitoring",
+        "sequence": [
+          "twelve-factor-monitor (periodic) → monitor.metrics",
+          "twelve-factor-audit (on threshold) → audit.complete",
+          "twelve-factor-remediation (if violations) → remediation.complete"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Pre-commit hook for twelve-factor skill
+# Performance budget: ≤ 10 seconds
+set -euo pipefail
+
+# Allow skip via env var
+[[ "${SKIP_HOOKS:-0}" == "1" ]] && exit 0
+
+# Fast mode: minimal checks
+if [[ "${FAST:-0}" == "1" ]]; then
+  exit 0
+fi
+
+ROOT="$(git rev-parse --show-toplevel)"
+SKILL_DIR="$ROOT/.claude/skills/twelve-factor-methodology"
+
+# Budget enforcement
+TIMEOUT=10
+
+# Quick validation with timeout
+timeout ${TIMEOUT}s bash -c '
+  # Check required tools
+  MISSING=()
+  for tool in jq git; do
+    command -v "$tool" >/dev/null || MISSING+=("$tool")
+  done
+
+  if [[ ${#MISSING[@]} -gt 0 ]]; then
+    echo "⚠ Missing tools: ${MISSING[*]}" >&2
+    echo "  Install to enable full validation" >&2
+  fi
+
+  # Validate YAML if yq available
+  if command -v yq >/dev/null 2>&1; then
+    if [[ -f "'"$SKILL_DIR"'/templates/bus.config.yaml" ]]; then
+      yq eval . "'"$SKILL_DIR"'/templates/bus.config.yaml" >/dev/null || {
+        echo "✗ Invalid YAML in bus.config.yaml" >&2
+        exit 1
+      }
+    fi
+  fi
+
+  # Basic syntax check for shell scripts
+  for script in "'"$SKILL_DIR"'/scripts/"*.sh; do
+    [[ -f "$script" ]] || continue
+    bash -n "$script" || {
+      echo "✗ Syntax error in $(basename "$script")" >&2
+      exit 1
+    }
+  done
+
+  echo "✓ Pre-commit checks passed (${SECONDS}s)"
+' || {
+  echo "✗ Pre-commit hook failed or timed out" >&2
+  exit 1
+}
+
+exit 0

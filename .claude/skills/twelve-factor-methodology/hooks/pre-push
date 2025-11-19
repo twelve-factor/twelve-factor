@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Pre-push hook for twelve-factor skill
+# Performance budget: ≤ 60 seconds
+set -euo pipefail
+
+# Allow skip via env var
+[[ "${SKIP_HOOKS:-0}" == "1" ]] && exit 0
+
+ROOT="$(git rev-parse --show-toplevel)"
+SKILL_DIR="$ROOT/.claude/skills/twelve-factor-methodology"
+
+# Budget enforcement
+TIMEOUT=60
+
+# Run self-test with timeout
+timeout ${TIMEOUT}s bash "$SKILL_DIR/scripts/self-test.sh" --fast || {
+  echo "✗ Pre-push self-test failed" >&2
+  echo "  Run 'SKIP_HOOKS=1 git push' to bypass (not recommended)" >&2
+  exit 1
+}
+
+exit 0

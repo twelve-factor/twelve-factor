@@ -1,0 +1,5 @@
+{"topic":"system.init","ts":"2025-11-19T00:00:00Z","payload":{"message":"Twelve-Factor C.R.A.F.T. system initialized","version":"1.0.0","bus_backend":"json"}}
+{"topic":"test.ping","ts":"2025-11-19T08:18:23Z","payload":{"msg":"hello","ts":"2025-11-19T08:18:23Z"}}
+{"topic":"kv.set","ts":"2025-11-19T08:18:23Z","payload":{"key":"***REDACTED***","value":{"status":"ok"}}}
+{"topic":"test.ping","ts":"2025-11-19T08:18:43Z","payload":{"msg":"hello","ts":"2025-11-19T08:18:43Z"}}
+{"topic":"kv.set","ts":"2025-11-19T08:18:43Z","payload":{"key":"test.key","value":{"status":"ok"}}}

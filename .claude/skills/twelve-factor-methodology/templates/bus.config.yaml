@@ -1,0 +1,35 @@
+# Shared Context Bus Configuration
+# Supports multiple backends: json, sqlite, redis, graph (neo4j)
+
+backend: ${BUS_BACKEND:-json}  # Default to JSON for simplicity
+
+# JSON Backend (file-based, no dependencies)
+json:
+  path: "./context/bus/shared-context.jsonl"
+  events_path: "./context/events.log"
+
+# SQLite Backend (local database)
+sqlite:
+  path: "./context/bus/shared-context.db"
+
+# Redis Backend (external service)
+redis:
+  url: "${REDIS_URL:-redis://localhost:6379/0}"
+
+# Neo4j Graph Backend (for complex relationships)
+graph:
+  uri: "${NEO4J_URI:-bolt://localhost:7687}"
+  user: "${NEO4J_USER:-neo4j}"
+  password_env: "NEO4J_PASSWORD"
+
+# Performance settings
+performance:
+  hook_timeout_sec: 10      # Max time for hooks
+  event_batch_size: 100     # Events to batch before flush
+  cache_ttl_sec: 300        # Cache validity time
+
+# Security settings
+security:
+  secrets_from_env: true
+  log_sanitization: true
+  max_event_size_kb: 64
