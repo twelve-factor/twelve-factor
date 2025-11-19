@@ -1,11 +1,147 @@
 ---
 name: twelve-factor
 description: "Expert guidance for building twelve-factor applications - cloud-native SaaS apps following best practices for codebase management, configuration, dependencies, processes, services, deployment, scaling, logs, and admin tasks. Activate when building web apps, microservices, APIs, cloud applications, containerized apps, or when reviewing architecture for production readiness, scalability, portability, and continuous deployment."
+allowed-tools: "Read,Write,Bash,Grep,Glob"
 ---
 
 # Twelve-Factor App Methodology Expert
 
 You are an expert in the Twelve-Factor App methodology - a set of best practices for building modern, cloud-native software-as-a-service applications. This skill helps ensure code follows twelve-factor principles for maximum portability, scalability, and maintainability.
+
+## 📚 Official Documentation & Sources
+
+This skill is based on authoritative twelve-factor resources:
+
+- **The Twelve-Factor App** (Original Manifesto)
+  - URL: https://12factor.net
+  - Author: Adam Wiggins (Heroku co-founder)
+  - Last Updated: 2012 (canonical reference)
+  - Last Checked: 2025-11-19
+  - Status: ✅ Active and maintained
+
+- **Twelve-Factor Manifesto** (Community Update Project)
+  - URL: https://github.com/twelve-factor/twelve-factor
+  - Repository: twelve-factor/twelve-factor
+  - Last Updated: 2024 (ongoing community improvements)
+  - Last Checked: 2025-11-19
+  - Status: ✅ Active development
+
+- **Beyond the Twelve-Factor App** (O'Reilly, Kevin Hoffman)
+  - URL: https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/
+  - Published: 2016
+  - Status: ✅ Published resource
+
+**Auto-Update**: This skill automatically checks documentation freshness via post-run hooks. See `context/docs/INDEX.md` for latest check results.
+
+## 🔌 Context Bus Integration
+
+This skill uses a shared context bus for:
+- Publishing compliance check results
+- Coordinating with other skills
+- Event-driven automation
+- Persistent state management
+
+**Configuration**: `.claude/skills/twelve-factor/bus.config.yaml`
+
+**Supported Backends**:
+- `json` (default): Local JSONL file, no dependencies
+- `sqlite`: Structured queries, better performance
+- `redis`: Distributed, real-time, multi-instance support
+- `graph`: Neo4j for relationship queries
+
+**Switch backends**: Set environment variable `BUS_BACKEND=sqlite|redis|graph`
+
+**Bus CLI**:
+```bash
+# Publish event
+.claude/skills/twelve-factor/scripts/bus.sh publish twelve-factor.compliance '{"status":"ok"}'
+
+# Read events
+.claude/skills/twelve-factor/scripts/bus.sh read twelve-factor.violations 10
+
+# Health check
+.claude/skills/twelve-factor/scripts/bus.sh health
+```
+
+## 🤖 Micro-Agents (Parallel Tasks)
+
+This skill includes specialized agents for parallel execution:
+
+1. **compliance-checker.sh** - Scans code for twelve-factor violations
+   - Factor III: Hardcoded credentials
+   - Factor II: Missing dependency manifests
+   - Factor XI: File logging
+   - Factor VI: Process state issues
+
+2. **config-auditor.sh** - Audits configuration management
+   - Environment file analysis
+   - .env.example presence
+   - .gitignore protection
+   - Config file security
+
+3. **deployment-validator.sh** - Validates deployment setup
+   - Dockerfile multi-stage builds
+   - Docker Compose dev/prod parity
+   - CI/CD pipeline detection
+   - Process manager configuration
+
+**Run agents**:
+```bash
+# Run all agents in parallel (max 4 concurrent)
+.claude/skills/twelve-factor/scripts/agents-runner.sh run
+
+# Test single agent
+.claude/skills/twelve-factor/scripts/agents-runner.sh test compliance-checker.sh
+
+# List available agents
+.claude/skills/twelve-factor/scripts/agents-runner.sh list
+```
+
+**Agent results**: Published to bus topic `twelve-factor.agents.results`
+
+## ⚡ Performance & Hooks
+
+**Performance Budget**:
+- Pre-commit hook: ≤10s (quick sanity checks)
+- Pre-push hook: ≤60s (compliance checks)
+- Post-run hooks: Non-blocking, background execution
+
+**Available Hooks**:
+- `.claude/hooks/pre-commit` - Tool availability check
+- `.claude/hooks/post-skill-run` - Master post-run dispatcher
+  - `10-docs-update.sh` - Auto-update documentation index
+  - `20-emit-metrics.sh` - Publish usage metrics to bus
+
+**Skip hooks** (for emergency commits):
+```bash
+SKIP_HOOKS=1 git commit -m "Emergency fix"
+```
+
+## 🛠️ Available Scripts
+
+**Compliance Check**:
+```bash
+.claude/skills/twelve-factor/scripts/check-compliance.sh
+# Returns: violations count, warnings, exit code
+```
+
+**Documentation Update**:
+```bash
+.claude/skills/twelve-factor/scripts/update-docs.sh
+# Checks official sources, updates metadata.json and context/docs/INDEX.md
+```
+
+**Agents Runner**:
+```bash
+.claude/skills/twelve-factor/scripts/agents-runner.sh run
+# Parallel execution of all micro-agents
+```
+
+**Context Bus**:
+```bash
+.claude/skills/twelve-factor/scripts/bus.sh [publish|read|get|put|health]
+# Unified interface for event publishing and state management
+```
 
 ## Core Principles
 

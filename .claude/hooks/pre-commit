@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Twelve-Factor Skill - Pre-commit Hook
+# Performance budget: ≤10s
+# Quick sanity checks before commit
+
+set -euo pipefail
+
+# Allow skipping hooks for emergency commits
+[ "${SKIP_HOOKS:-0}" = "1" ] && exit 0
+
+SKILL_DIR="$(git rev-parse --show-toplevel)/.claude/skills/twelve-factor"
+
+echo "🔍 Twelve-Factor pre-commit check..."
+
+# Quick tool check (should be instant)
+check_tools() {
+    local missing=()
+
+    for tool in jq yq git; do
+        command -v "$tool" >/dev/null 2>&1 || missing+=("$tool")
+    done
+
+    if [ ${#missing[@]} -gt 0 ]; then
+        echo "❌ Missing required tools: ${missing[*]}"
+        echo "   Install with: brew install ${missing[*]} (macOS) or apt-get install ${missing[*]} (Linux)"
+        return 1
+    fi
+
+    return 0
+}
+
+# Run with 10s timeout
+timeout 10s bash -c "$(declare -f check_tools); check_tools" || {
+    echo "❌ Pre-commit check failed or timed out (>10s)"
+    echo "   Set SKIP_HOOKS=1 to bypass: SKIP_HOOKS=1 git commit ..."
+    exit 1
+}
+
+echo "✅ Pre-commit check passed"
+exit 0

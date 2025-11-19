@@ -1,0 +1,46 @@
+# Twelve-Factor Skill - Context Bus Configuration
+# Supports multiple backends: json (default), sqlite, redis, graph
+
+backend: ${BUS_BACKEND:-json}
+
+# JSON backend (default, lightweight, no dependencies)
+json:
+  path: "./.claude/bus/twelve-factor-context.jsonl"
+  max_size_mb: 10
+
+# SQLite backend (structured queries, better performance for large datasets)
+sqlite:
+  path: "./.claude/bus/twelve-factor-context.db"
+  table: "skill_events"
+
+# Redis backend (distributed, real-time, supports multiple Claude instances)
+redis:
+  url: "${REDIS_URL:-redis://localhost:6379/0}"
+  key_prefix: "twelve-factor:"
+  ttl: 86400  # 24 hours
+
+# Neo4j Graph backend (advanced: relationship queries, knowledge graph)
+graph:
+  uri: "${NEO4J_URI:-bolt://localhost:7687}"
+  user: "${NEO4J_USER:-neo4j}"
+  password_env: "NEO4J_PASSWORD"
+  database: "twelve-factor"
+
+# Performance settings
+performance:
+  write_timeout_ms: 1000
+  read_timeout_ms: 500
+  batch_size: 100
+
+# Topics for event-driven communication
+topics:
+  compliance_check: "twelve-factor.compliance"
+  violations_found: "twelve-factor.violations"
+  docs_updated: "twelve-factor.docs"
+  agent_results: "twelve-factor.agents.results"
+  metrics: "twelve-factor.metrics"
+
+# Security
+security:
+  encrypt_sensitive: false  # Set true if storing credentials
+  audit_log: true
