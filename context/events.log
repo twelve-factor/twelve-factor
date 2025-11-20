@@ -1,0 +1,16 @@
+{"topic":"system.init","ts":"2025-11-19T00:00:00Z","payload":{"message":"Twelve-Factor C.R.A.F.T. system initialized","version":"1.0.0","bus_backend":"json"}}
+{"topic":"test.ping","ts":"2025-11-19T08:18:23Z","payload":{"msg":"hello","ts":"2025-11-19T08:18:23Z"}}
+{"topic":"kv.set","ts":"2025-11-19T08:18:23Z","payload":{"key":"***REDACTED***","value":{"status":"ok"}}}
+{"topic":"test.ping","ts":"2025-11-19T08:18:43Z","payload":{"msg":"hello","ts":"2025-11-19T08:18:43Z"}}
+{"topic":"kv.set","ts":"2025-11-19T08:18:43Z","payload":{"key":"test.key","value":{"status":"ok"}}}
+{"topic":"skill.created","ts":"2025-11-20T01:52:12Z","payload":{"name":"twelve-factor-docker","archetype":"audit"}}
+{"topic":"test.selftest","ts":"2025-11-20T01:52:45Z","payload":{"skill":"twelve-factor-docker"}}
+{"topic":"twelve-factor-docker.start","ts":"2025-11-20T01:53:10Z","payload":{"task":"run"}}
+{"topic":"agent.twelve-factor-docker.template.result","ts":"2025-11-20T01:53:12Z","payload":{"status":"ok","mode":"run"}}
+{"topic":"twelve-factor-docker.complete","ts":"2025-11-20T01:53:12Z","payload":{"task":"run","status":"success"}}
+{"topic":"skill.twelve-factor-docker.run","ts":"2025-11-20T01:53:13Z","payload":{"ts":"2025-11-20T01:53:13Z"}}
+{"topic":"twelve-factor-docker.start","ts":"2025-11-20T01:53:53Z","payload":{"task":"run"}}
+{"topic":"agent.twelve-factor-docker.template.result","ts":"2025-11-20T01:53:55Z","payload":{"status":"ok","mode":"run"}}
+{"topic":"agent.twelve-factor-docker.dockerfile-check.result","ts":"2025-11-20T01:53:55Z","payload":{"status":"skipped","reason":"no_dockerfiles"}}
+{"topic":"twelve-factor-docker.complete","ts":"2025-11-20T01:53:55Z","payload":{"task":"run","status":"success"}}
+{"topic":"skill.twelve-factor-docker.run","ts":"2025-11-20T01:53:56Z","payload":{"ts":"2025-11-20T01:53:56Z"}}

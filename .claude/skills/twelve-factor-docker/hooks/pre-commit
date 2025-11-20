@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Pre-commit hook (≤10s budget)
+set -euo pipefail
+
+[[ "${SKIP_HOOKS:-0}" == "1" ]] && exit 0
+
+timeout 10s bash -c '
+  command -v jq >/dev/null || exit 1
+  command -v git >/dev/null || exit 1
+' || {
+  echo "✗ Pre-commit checks failed" >&2
+  exit 1
+}
+
+exit 0
