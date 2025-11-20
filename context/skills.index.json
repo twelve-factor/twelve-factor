@@ -9,10 +9,22 @@
       "version": "1.0.0",
       "archetype": "reference",
       "path": ".claude/skills/twelve-factor-methodology",
-      "capabilities": ["analyze", "assess", "document"],
-      "agents": ["factor-check", "code-scan", "docs-sync"],
+      "capabilities": [
+        "analyze",
+        "assess",
+        "document"
+      ],
+      "agents": [
+        "factor-check",
+        "code-scan",
+        "docs-sync"
+      ],
       "topics": {
-        "publishes": ["skill.run", "agent.*.result", "docs.updated"],
+        "publishes": [
+          "skill.run",
+          "agent.*.result",
+          "docs.updated"
+        ],
         "subscribes": []
       },
       "status": "active",
@@ -37,10 +49,20 @@
       "version": "1.0.0",
       "archetype": "audit",
       "path": ".claude/skills/twelve-factor-audit",
-      "capabilities": ["audit", "check", "report"],
+      "capabilities": [
+        "audit",
+        "check",
+        "report"
+      ],
       "topics": {
-        "publishes": ["audit.start", "audit.complete", "audit.violations"],
-        "subscribes": ["agent.*.result"]
+        "publishes": [
+          "audit.start",
+          "audit.complete",
+          "audit.violations"
+        ],
+        "subscribes": [
+          "agent.*.result"
+        ]
       },
       "status": "active"
     },
@@ -50,10 +72,21 @@
       "version": "1.0.0",
       "archetype": "remediation",
       "path": ".claude/skills/twelve-factor-remediation",
-      "capabilities": ["fix", "preview", "rollback"],
+      "capabilities": [
+        "fix",
+        "preview",
+        "rollback"
+      ],
       "topics": {
-        "publishes": ["remediation.start", "remediation.complete", "remediation.changes"],
-        "subscribes": ["audit.complete", "audit.violations"]
+        "publishes": [
+          "remediation.start",
+          "remediation.complete",
+          "remediation.changes"
+        ],
+        "subscribes": [
+          "audit.complete",
+          "audit.violations"
+        ]
       },
       "status": "active"
     },
@@ -63,10 +96,20 @@
       "version": "1.0.0",
       "archetype": "monitor",
       "path": ".claude/skills/twelve-factor-monitor",
-      "capabilities": ["monitor", "alert", "history"],
+      "capabilities": [
+        "monitor",
+        "alert",
+        "history"
+      ],
       "topics": {
-        "publishes": ["monitor.metrics", "monitor.alert", "monitor.trend"],
-        "subscribes": ["audit.complete"]
+        "publishes": [
+          "monitor.metrics",
+          "monitor.alert",
+          "monitor.trend"
+        ],
+        "subscribes": [
+          "audit.complete"
+        ]
       },
       "status": "active"
     },
@@ -76,9 +119,32 @@
       "version": "1.0.0",
       "archetype": "meta",
       "path": ".claude/skills/skill-generator",
-      "capabilities": ["generate", "scaffold"],
+      "capabilities": [
+        "generate",
+        "scaffold"
+      ],
       "topics": {
-        "publishes": ["skill.created"],
+        "publishes": [
+          "skill.created"
+        ],
+        "subscribes": []
+      },
+      "status": "active"
+    },
+    {
+      "id": "twelve-factor-docker",
+      "name": "twelve-factor-docker",
+      "version": "1.0.0",
+      "archetype": "audit",
+      "path": ".claude/skills/twelve-factor-docker",
+      "capabilities": [
+        "run"
+      ],
+      "topics": {
+        "publishes": [
+          "twelve-factor-docker.start",
+          "twelve-factor-docker.complete"
+        ],
         "subscribes": []
       },
       "status": "active"
