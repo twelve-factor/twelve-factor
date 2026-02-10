@@ -12,7 +12,6 @@
 | Joe Kutner      | [@jkutner](https://github.com/jkutner)             | codefinger007     |
 | Terence Lee     | [@hone](https://github.com/hone)                   | hone              |
 | James Ward      | [@jamesward](https://github.com/jamesward)         | _jamesward        |
-| Brett Weaver    | [@weavenet](https://github.com/weavenet)           | weavenet          |
 
 ## Emeritus Maintainers
 
@@ -20,3 +19,4 @@
 | --------------- | -------------------------------------------------- |
 | Gail Frederick  | [@gailfrederick](https://github.com/gailfrederick) |
 | Steren Giannini | [@steren](https://github.com/steren)               |
+| Brett Weaver    | [@weavenet](https://github.com/weavenet)           |
