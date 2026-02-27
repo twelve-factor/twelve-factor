@@ -18,7 +18,7 @@ running process(es) are only minimally visible to the developers of the app.
 
 #### 2. A twelve-factor app treats processes as first-class citizens
 
-**In the twelve-factor app, processes are a first class citizen.** Processes in
+**In the twelve-factor app, processes are a first-class citizen.** Processes in
 the twelve-factor app take strong cues from [the unix process model for running
 service
 daemons](https://adam.herokuapp.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/).
@@ -48,7 +48,7 @@ each type is known as the *process formation*.
 #### 4. A twelve-factor app relies on the execution environment to manage processes
 
 Twelve-factor app processes [should never
-daemonize](https://web.archive.org/web/20190827220442/http://dustin.sallings.org/2010/02/28/running-processes.html)
+daemonize](https://dustin.sallings.org/2010/02/28/running-processes.html)
 or write PID files.
 
 ##### Guidance

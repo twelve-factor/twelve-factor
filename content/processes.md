@@ -35,11 +35,11 @@ usually wipe out all local (e.g., memory and filesystem) state.
 ##### Examples
 
 Asset packagers like
-[django-assetpackager](http://code.google.com/p/django-assetpackager/) use the
+[django-assetpackager](https://github.com/wtayyeb/django-assetpackager) use the
 filesystem as a cache for compiled assets. A twelve-factor app prefers to do
 this compiling during the [build stage](/build-release-run). Asset packagers
 such as [Jammit](http://documentcloud.github.io/jammit/) and the [Rails asset
-pipeline](http://ryanbigg.com/guides/asset_pipeline.html) can be configured to
+pipeline](https://guides.rubyonrails.org/asset_pipeline.html) can be configured to
 package assets during the build stage.
 
 ##### Guidance

@@ -54,7 +54,7 @@ failures—processes are architected to recover without data loss or corruption.
 
 ##### Examples
 
-Using a robust queuing backend, such as Beanstalkd, ensures that jobs are
+Using a robust queuing backend, such as [Beanstalkd](https://beanstalkd.github.io/), ensures that jobs are
 returned to the queue when a process disconnects or times out. Embracing
 crash-only design principles further reinforces system resilience.
 
