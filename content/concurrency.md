@@ -18,7 +18,7 @@ running process(es) are only minimally visible to the developers of the app.
 
 #### 2. A twelve-factor app treats processes as first-class citizens
 
-**In the twelve-factor app, processes are a first-class citizen.** Processes in
+**In the twelve-factor app, processes are first-class citizens.** Processes in
 the twelve-factor app take strong cues from [the unix process model for running
 service
 daemons](https://adam.herokuapp.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/).
