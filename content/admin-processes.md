@@ -31,7 +31,7 @@ administrative tasks and the running app.
 The same [dependency isolation](./dependencies.md) techniques apply to every
 process type. For instance, if a Ruby web process is started with
 `bundle exec thin start`, then a database migration should be run with
-`bundle exec rake db:migrate`. Likewise, a Python application using Virtualenv
+`bundle exec rake db:migrate`. Likewise, a Python application using [Virtualenv](https://virtualenv.pypa.io/en/latest/)
 should invoke the vendored `bin/python` for both the web server and any
 `manage.py` admin tasks.
 

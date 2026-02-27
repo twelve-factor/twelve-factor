@@ -59,7 +59,7 @@ API-accessible consumer services (such as [Twitter](http://dev.twitter.com/),
 ##### Guidance
 
 A [deploy](./codebase.md) of the twelve-factor app should be able to swap out a
-local MySQL database with one managed by a third party (such as
+local MySQL database with one managed by a third-party (such as
 [Amazon RDS](http://aws.amazon.com/rds/)) without any changes to the app's code.
 Likewise, a local SMTP server could be swapped with a third-party SMTP service
 (such as Postmark) without code changes. In both cases, only the resource handle

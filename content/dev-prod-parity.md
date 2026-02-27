@@ -64,7 +64,7 @@ All deploys of the app (developer environments, staging, production) should use
 the same type and version of each backing service. Modern backing services such
 as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run
 thanks to modern packaging systems like
-[Homebrew](http://mxcl.github.com/homebrew/) and
+[Homebrew](https://github.com/Homebrew/brew) and
 [apt-get](https://help.ubuntu.com/community/AptGet/Howto). Declarative
 provisioning tools such as [Chef](http://www.opscode.com/chef/) and
 [Puppet](http://docs.puppetlabs.com/), combined with lightweight virtual
