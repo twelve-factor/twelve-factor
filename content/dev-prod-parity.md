@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / X. Dev/prod parity
+
 ## X. Dev/prod parity
 
 ### Keep development, staging, and production as similar as possible

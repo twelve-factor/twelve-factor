@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / VII. Port binding
+
 ## VII. Port binding
 
 ### Export services via port binding

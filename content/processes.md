@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / VI. Processes
+
 ## VI. Processes
 ### Execute the app as one or more stateless processes
 

@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / VIII. Concurrency
+
 ## VIII. Concurrency
 ### Scale out via the process model
 

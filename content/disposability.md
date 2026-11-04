@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / IX. Disposability
+
 ## IX. Disposability
 
 ### Maximize robustness with fast startup and graceful shutdown
