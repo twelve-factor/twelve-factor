@@ -1,4 +1,4 @@
-[Home](../README.md) / Introduction
+[Home](../README.md) / [The Twelve Factors](./toc.md) / Introduction
 
 Introduction
 ============
