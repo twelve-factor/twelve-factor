@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / XI. Logs
+
 ## XI. Logs
 ### Treat logs as event streams
 

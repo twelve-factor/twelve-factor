@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / I. Codebase
+
 ## I. Codebase
 ### One codebase tracked in revision control, many deploys
 

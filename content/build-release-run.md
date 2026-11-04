@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / V. Build, release, run
+
 ## V. Build, release, run
 ### Strictly separate build and run stages
 

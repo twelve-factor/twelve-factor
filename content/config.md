@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / III. Config
+
 ## III. Config
 ### Store config in the environment
 

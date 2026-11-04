@@ -1,3 +1,5 @@
+[Home](../README.md) / [The Twelve Factors](./toc.md) / II. Dependencies
+
 ## II. Dependencies
 
 ### Explicitly declare and isolate dependencies
